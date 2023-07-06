@@ -6,7 +6,7 @@
 <th:block layout:fragment="content">
     <div id="main">
         <div class="mt-5">
-            <i class="fa-solid fa-users fa-2xl"> 회원가입</i>
+            <i class="fa-solid fa-children fa-2xl"> 회원가입</i>
             <hr>
         </div><!-- title -->
 
@@ -54,20 +54,19 @@
                         <div class="row my-3">
                             <label for="name" class="col-3 col-form-label text-warning text-end">이름</label>
                             <div class="col-6">
-                                <input type="text" name="name" id="name"
-                                       class="form-control border-warning">
+                                <input type="text" name="name" id="name" class="form-control border-warning">
                             </div>
                         </div><!-- name -->
                         <div class="row mb-2">
                             <label for="byear" class="col-3 col-form-label text-warning text-end">생년월일</label>
                             <div class="col-3">
                                 <select id="byear" name="byear" class="form-select border-warning">
-                                <option>년도</option>
-                                <option>2023</option>
-                                <option>2022</option>
-                                <option>2021</option>
-                                <option>2020</option>
-                            </select></div> <!-- year -->
+                                    <option>년도</option>
+                                    <option>2023</option>
+                                    <option>2022</option>
+                                    <option>2021</option>
+                                    <option>2020</option>
+                                </select></div><!-- year -->
                             <div class="col-3">
                                 <select id="bmonth" name="bmonth" class="form-select border-warning">
                                     <option>월</option>
@@ -75,15 +74,7 @@
                                     <option>02</option>
                                     <option>03</option>
                                     <option>04</option>
-                                    <option>05</option>
-                                    <option>06</option>
-                                    <option>07</option>
-                                    <option>08</option>
-                                    <option>09</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
-                                </select></div> <!-- month -->
+                                </select></div><!-- month -->
                             <div class="col-3">
                                 <select id="bday" name="bday" class="form-select border-warning">
                                     <option>일</option>
@@ -91,21 +82,21 @@
                                     <option>02</option>
                                     <option>03</option>
                                     <option>04</option>
-                                </select></div> <!-- day -->
+                                </select></div><!-- day -->
                         </div><!-- birth -->
                         <div class="row">
                             <label for="gmale" class="col-3 col-form-label text-warning text-end">성별</label>
                             <div class="col-3 mt-2">
                                 <div class="form-check">
                                     <input type="radio" name="gender" id="gmale" value="m"
-                                    checked class="form-check-input">
+                                           checked class="form-check-input">
                                     <label for="gmale" class="form-check-label text-warning">남자</label>
                                 </div>
                             </div>
                             <div class="col-3 mt-2">
                                 <div class="form-check">
                                     <input type="radio" name="gender" id="gfmale" value="f"
-                                         class="form-check-input">
+                                           class="form-check-input">
                                     <label for="gfmale" class="form-check-label text-warning">여자</label>
                                 </div>
                             </div>
@@ -119,20 +110,21 @@
                         </ul>
                     </div><!-- info msg -->
                 </div><!-- info -->
-
                 <div class="row">
                     <div class="col text-center">
                         <hr class="w-75 mx-auto">
                         <button type="button" id="checkbtn1" class="btn btn-primary">
-                            <i class="fa-regular fa-circle-check"></i> 확인하기</button>
-                        <button type="button" id="canblebtn1" class="btn btn-danger">
-                            <i class="fa-regular fa-circle-xmark"></i> 취소하기</button>
+                            <i class="fa-regular fa-circle-check"></i> 확인하기
+                        </button>
+                        <button type="button" id="canclebtn1" class="btn btn-danger">
+                            <i class="fa-regular fa-circle-xmark"></i> 취소하기
+                        </button>
                     </div>
                 </div><!-- button -->
             </form>
         </div><!-- normal check -->
 
-        <div class="card card-body bg-light m-5 mt-5">
+        <div class="card card-body bg-light m-5">
             <h3>실명확인 회원가입</h3>
             <form name="agreefrm2" id="agreefrm2">
                 <div class="row">
@@ -140,29 +132,31 @@
                         <div class="row my-3">
                             <label for="name" class="col-3 col-form-label text-warning text-end">이름</label>
                             <div class="col-6">
-                                <input type="text" name="name" id="name2"
-                                       class="form-control border-warning">
+                                <input type="text" name="name" id="name2" class="form-control border-warning">
                             </div>
-                        </div>  <!-- name -->
+                        </div><!-- name -->
                         <div class="row mb-2">
                             <label for="jumin1" class="col-3 col-form-label text-warning text-end">주민번호</label>
                             <div class="col-3">
-                                <input type="text" name="jumin1" id="jumin1" class="form-control border-warning"></div><!-- jumin1 -->
+                                <input type="text " maxlength="6" name="jumin1" id="jumin1"
+                                       class="form-control border-warning"></div><!-- jumin1 -->
                             <div class="col-1">
-                                <span class="hypen">&boxh;</span></div> <!-- sign -->
+                                <span class="hypen">&boxh;</span></div><!-- sign -->
                             <div class="col-3">
-                                <input type="text" name="jumin2" id="jumin2" class="form-control border-warning"></div><!-- jumin2 -->
-                            </div> <!-- jumin --->
-
-
-                            <div class="form-check">
-                                <input type="checkbox" name="infoagree" id="infoagree"
-                                       class="form-check-input">
-                                <label for="infoagree" class="form-check-label text-warning">
-                                    주민등록번호 처리에 동의합니다.
-                                </label>
+                                <input type="password" maxlength="7" name="jumin2" id="jumin2"
+                                       class="form-control border-warning">
+                            </div><!-- jumin2 -->
+                        </div><!-- jumin -->
+                        <div class="row">
+                            <label class="col-3 col-form-label text-warning text-end">&nbsp;</label>
+                            <div class="col-7 mt-2">
+                                <div class="form-check">
+                                    <input type="checkbox" name="infoagree" id="infoagree" class="form-check-input">
+                                    <label for="infoagree" class="form-check-label text-warning">주민등록번호 처리에 동의합니다.
+                                    </label>
+                                </div>
                             </div>
-                        </div>
+                        </div><!-- agree -->
                     </div>
                     <div class="col-5">
                         <ul>
@@ -176,24 +170,25 @@
                             <li>개인정보보호법에 따라 <span class="red">이용 동의</span>를 받습니다.</li>
                         </ul>
                     </div><!-- info msg -->
-                </div>
+                </div><!-- real info -->
                 <div class="row">
                     <div class="col text-center">
                         <hr class="w-75 mx-auto">
                         <button type="button" id="checkbtn2" class="btn btn-primary">
-                            <i class="fa-regular fa-circle-check"></i> 확인하기</button>
-                        <button type="button" id="cancelbtn2" class="btn btn-danger">
-                            <i class="fa-regular fa-circle-xmark"></i> 취소하기</button>
+                            <i class="fa-regular fa-circle-check"></i> 확인하기
+                        </button>
+                        <button type="button" id="canclebtn2" class="btn btn-danger">
+                            <i class="fa-regular fa-circle-xmark"></i> 취소하기
+                        </button>
                     </div>
                 </div><!-- button -->
             </form>
-        </div>
+        </div><!-- real check --->
 
         <div class="text-center my-5">
 
-        </div><!--real check-->
+        </div><!-- buttons-->
 
     </div>
 </th:block>
-
 </html>
