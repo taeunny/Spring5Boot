@@ -13,4 +13,22 @@ noagree?.addEventListener('click', () => {
     location.href = "/";
 });
 
+// checkme
+let frm = document.forms.agreefrm2;
+let checkbtn2 = document.querySelector("#checkbtn2");
+let canclebtn2 = document.querySelector("#canclebtn2");
+
+checkbtn2?.addEventListener('click', () => {
+    if (frm.name.value === '') alert('이름을 입력해주세요!');
+    else if (frm.jumin1.value === '') alert('생년월일을 작성해주세요!');
+    else if (frm.jumin2.value === '') alert('주민번호 뒷자리를 작성해주세요!');
+    else if (!frm.infoagree.checked) alert('주민번호 처리에 동의하세요!');
+    else {
+       frm.method = 'post';
+       frm.submit();
+    }
+});
+canclebtn2?.addEventListener('click', () => {
+    location.href = "/";
+});
 
