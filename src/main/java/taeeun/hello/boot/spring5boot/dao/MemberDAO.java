@@ -1,7 +1,9 @@
 package taeeun.hello.boot.spring5boot.dao;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import taeeun.hello.boot.spring5boot.model.Member;
+import taeeun.hello.boot.spring5boot.model.Zipcode;
 
 import java.util.List;
 
@@ -11,4 +13,5 @@ public interface MemberDAO {
 
     List<Member> selectMember();
 
+    List<Zipcode> selectzip(String dong);
 }

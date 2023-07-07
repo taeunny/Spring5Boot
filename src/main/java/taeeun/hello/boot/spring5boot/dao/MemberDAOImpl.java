@@ -3,6 +3,7 @@ package taeeun.hello.boot.spring5boot.dao;
 import lombok.RequiredArgsConstructor;
 import taeeun.hello.boot.spring5boot.dao.MemberDAO;
 import taeeun.hello.boot.spring5boot.model.Member;
+import taeeun.hello.boot.spring5boot.model.Zipcode;
 import taeeun.hello.boot.spring5boot.mybatis.MemberMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,6 @@ public class MemberDAOImpl implements MemberDAO {
     @Autowired
     final MemberMapper memberMapper;
 
-    @Autowired
-    private SqlSession sqlSession;
-
     @Override
     public int insertMember(Member m) {
 
@@ -35,5 +33,12 @@ public class MemberDAOImpl implements MemberDAO {
     public List<Member> selectMember() {
 
         return memberMapper.selectMember();
+    }
+
+    @Override
+    public List<Zipcode> selectzip(String dong) {
+
+
+        return memberMapper.findZipcode(dong);
     }
 }
