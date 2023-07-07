@@ -1,16 +1,19 @@
 package taeeun.hello.boot.spring5boot;
 
+import taeeun.hello.boot.spring5boot.dao.MemberDAO;
+import taeeun.hello.boot.spring5boot.dao.MemberDAOImpl;
+import taeeun.hello.boot.spring5boot.model.Member;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
-import taeeun.hello.boot.spring5boot.dao.MemberDAO;
-import taeeun.hello.boot.spring5boot.dao.MemberDAOImpl;
-import taeeun.hello.boot.spring5boot.model.Member;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @MybatisTest
@@ -18,33 +21,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Import(MemberDAOImpl.class)
 public class MemberDAOUnitTest {
 
-    @Autowired
-    private MemberDAO mdao;
+    @Autowired private MemberDAO mdao;
 
     @Test
     @DisplayName("MemberDAO insert Test")
     void insertMember() {
+        Member m = new Member(null, "","","","",
+                "","","","",null);
 
-        Member m = new Member(null, "","","",
-                "","","","", "",null);
-
-
-        int result =mdao.insertMember(m);
+        int result = mdao.insertMember(m);
         System.out.println(result);
-        assertEquals(result, 1);    // alt + enter -> 5.9.2
+        assertEquals(result, 1);
+    }
+    @Test
+    @DisplayName("MemberDAO insert Test")
+    void selectMember() {
+        List<Member> results = mdao.selectMember();
+
+        System.out.println(results);
+        assertNotNull(results);
     }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
