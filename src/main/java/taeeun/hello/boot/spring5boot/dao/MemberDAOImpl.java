@@ -1,15 +1,16 @@
 package taeeun.hello.boot.spring5boot.dao;
 
 import lombok.RequiredArgsConstructor;
+import taeeun.hello.boot.spring5boot.dao.MemberDAO;
+import taeeun.hello.boot.spring5boot.model.Member;
+import taeeun.hello.boot.spring5boot.mybatis.MemberMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import taeeun.hello.boot.spring5boot.model.Member;
-import taeeun.hello.boot.spring5boot.mybatis.MemberMapper;
 
 import java.util.List;
 
-@Repository("mdao")
+@Repository
 @RequiredArgsConstructor
 public class MemberDAOImpl implements MemberDAO {
 
@@ -24,14 +25,15 @@ public class MemberDAOImpl implements MemberDAO {
     @Override
     public int insertMember(Member m) {
 
-        // insert(insert관련 맵핑, 매개변수)
-        // sqlSession.insert("insertMember", m) 로 사용하는 방식보다는 편리
-        //return sqlSession.insert("MemberMapper.insertMember",m);
-        return memberMapper.insertMember(m);
+        // insert(insert관련맵핑, 매개변수)
+        // sqlSession.insert("insertMember",m) -> 기존의 코드임 이렇게 사용하는 방식보다는 아래가 편리함
+        // return sqlSession.insert("MemberMapper.insertMember",m);
+        return memberMapper.insertMember(m); // 요즘은 인터페이스를 따로 만들어서 불러오는 방식을 사용 -> 가독성이 더 좋음
     }
 
     @Override
     public List<Member> selectMember() {
-        return null;
+
+        return memberMapper.selectMember();
     }
 }
