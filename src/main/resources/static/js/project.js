@@ -42,6 +42,9 @@ let addrlist = document.querySelector("#addrlist");
 let sendzip = document.querySelector("#sendzip");
 let modal = null;       // 우편번호 모달
 
+let email3 = document.querySelector("#email3");
+
+
 zipbtn?.addEventListener('click', () => {
     while(addrlist.lastChild) {
         addrlist.removeChild(addrlist.lastChild);     // addrlist의 모든 자식요소를 지우는 것 (addr 가장 마지막 자식을 지우는것)
@@ -50,10 +53,10 @@ zipbtn?.addEventListener('click', () => {
 
     try {
         // 새로운 모달 창 생성
-        mymodal = new bootstrap.Modal(zipmodal, {});
+        modal = new bootstrap.Modal(zipmodal, {});
     } catch (e) { }
 
-    mymodal.show();       // 모달창 띄우기
+        modal.show();       // 모달창 띄우기
 });
 
 const showzipaddr = (jsons) => {
@@ -94,4 +97,21 @@ sendzip?.addEventListener('click', () =>{
     } else {
         alert('주소를 선택하세요!!');
     }
+});
+
+email3.addEventListener('click', () => {
+    let frm = document.forms.joinfrm;
+    if(email3.value === '직접입력하기') {
+        frm.email2.readOnly = false;    // readonly 해제
+        frm.email2.value = '';
+    } else if (email3.value !== '선택하세요') {
+        frm.email2.readOnly = true;
+        frm.email2.value = email3.value;
+    }
+});
+
+// 우편번호 검색 엔터키 입력 차단
+dong?.addEventListener('keydown', (e) => {
+    if(e.keyCode == 13)     // 엔터키가 입력되면 (엔터기값은 13)
+       e.preventDefault();  // 이벤트 전파 방지
 });
