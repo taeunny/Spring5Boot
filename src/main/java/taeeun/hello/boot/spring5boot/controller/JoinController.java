@@ -5,10 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import taeeun.hello.boot.spring5boot.model.Checkme;
 import taeeun.hello.boot.spring5boot.model.Member;
 import taeeun.hello.boot.spring5boot.service.MemberService;
@@ -85,7 +82,7 @@ public class JoinController {
 
     // 우편번호 검색
     // /join/zipcode?dong=동이름
-    // join/zipcode/동이름
+    // /join/zipcode/동이름
     // 검색결과는 뷰페이지 없이 바로 응답으로 출력 : RESTful 방식
     // 서블릿에서 제공하는 HttpServletResponse 객체를 이용하면
     // 스프링의 뷰리졸버 없이 바로 응답으로 출력할 수 있음
@@ -101,6 +98,19 @@ public class JoinController {
        res.getWriter().print(msrv.findzip(dong) );
 
 
+    }
+
+
+    //  아이디 중복검사
+    // /join/checkuid?uid=아이디
+    // /join/checkuid/아이디
+    @GetMapping("/checkuid/{uid}")     // 위의 두번째 방식으로 변수를 받아서 쓰기
+    @ResponseBody
+    // @PathVariable : url의 일부를 변수처럼 사용하고 싶다.
+    public void checkuid(@PathVariable String uid, HttpServletResponse res) throws IOException {
+        res.setContentType("application/json; charset=utf-8");
+
+        res.getWriter().print(msrv.checkuid(uid) );
     }
 
 }
