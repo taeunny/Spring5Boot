@@ -6,8 +6,8 @@
 <mapper namespace="taeeun.hello.boot.spring5boot.mybatis.MemberMapper">
     <insert id="insertMember" parameterType="Member">
         insert into member2
-        (userid, passwd, name, email, zipcode, addr1, addr2, phone)
-        values (#{userid}, #{passwd}, #{name},#{email}, #{zipcode},
+        (userid, passwd, name, jumin, email, zipcode, addr1, addr2, phone)
+        values (#{userid}, #{passwd}, #{name}, #{jumin}, #{email}, #{zipcode},
                 #{addr1},#{addr2},#{phone})
     </insert>
 
