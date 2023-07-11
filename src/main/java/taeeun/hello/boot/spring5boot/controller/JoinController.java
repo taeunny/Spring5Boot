@@ -131,10 +131,14 @@ public class JoinController {
         return returnPage;
     }
 
+    @GetMapping("/logout")
+    public String logout(Member m, HttpSession sess) {
 
+        sess.invalidate();
 
-
-
+        // logout하면 index 페이지로 넘어감
+        return "redirect:/";
+    }
 }
 
 
