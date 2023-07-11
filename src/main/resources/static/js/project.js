@@ -126,7 +126,7 @@ dong?.addEventListener('keydown', (e) => {
 
 // 비밀번호 확인
 let pwd = document.querySelector("#pwd");
-let repwd = document.querySelector("repasswd");
+let repwd = document.querySelector("#repasswd");
 let pwdmsg = document.querySelector("#pwdmsg");
 repwd?.addEventListener('blur', () => {
     let pmsg = '비밀번호가 서로 일치하지 않습니다!!';
@@ -202,6 +202,28 @@ let go2idx = document.querySelector("#go2idx");
 go2idx?.addEventListener('click', () => {
     location.href = '/';
 });
+
+
+// login
+let loginbtn = document.querySelector("#loginbtn");
+let lguid = document.querySelector("#userid");
+let lgpwd = document.querySelector("#passwd");
+let lgfrm = document.querySelector("#lgnfrm");
+loginbtn?.addEventListener('click', () => {
+
+    if(lguid.value === '') alert ('아이디를 입력하세요!!');
+    else if (lgpwd.value === '') alert ('비밀번호를 입력하세요!!')
+    else {
+        lgfrm.method = 'post';
+        lgfrm.action = '/join/login';
+        lgfrm.submit();
+    }
+});
+
+
+
+
+
 
 
 
