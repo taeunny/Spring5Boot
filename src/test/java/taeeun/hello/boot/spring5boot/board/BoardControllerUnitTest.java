@@ -31,4 +31,12 @@ public class BoardControllerUnitTest {
                         .andDo(print());
     }
 
+    @Test
+    @DisplayName("BoardController view Test")
+    void view() throws Exception {
+
+        mvc.perform(get("/board/view/4472"))
+                        .andExpect(status().isOk())
+                        .andDo(print());
+    }
 }
