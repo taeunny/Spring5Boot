@@ -13,5 +13,6 @@ public interface BoardMapper {
 
     Board selectOneBoard(String bno);
 
+    List<Board> selectBoard(int stnum);
 }
 
