@@ -10,7 +10,7 @@ public interface BoardDAO {
     int insertBoard(Board board);
 
     // 게시글 보기
-    List<Board> selectBoard();
+    List<Board> selectBoard(int stnum);
 
     // 몇번째 게시글을 볼건지
     Board selectOneBoard(String bno);
