@@ -1,4 +1,4 @@
-package taeeun.hello.boot.spring5boot;
+package taeeun.hello.boot.spring5boot.member;
 
 import taeeun.hello.boot.spring5boot.dao.MemberDAO;
 import taeeun.hello.boot.spring5boot.dao.MemberDAOImpl;
