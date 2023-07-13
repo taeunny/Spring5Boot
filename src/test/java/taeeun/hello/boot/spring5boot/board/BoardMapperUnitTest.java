@@ -56,6 +56,16 @@ public class BoardMapperUnitTest {
         assertEquals(result,1);
     }
 
+    @Test
+    @DisplayName("BoardMapper update Test")
+    @Transactional
+    void updateBoard() {
+        String bno = "4481";
+
+        int result = boardMapper.updateViewBoard(bno);
+
+        assertEquals(result,1);
+    }
 }
 
 
