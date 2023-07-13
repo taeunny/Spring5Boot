@@ -15,4 +15,6 @@ public interface BoardDAO {
     // 몇번째 게시글을 볼건지
     Board selectOneBoard(String bno);
 
+    int selectCountBoard();
+
 }
