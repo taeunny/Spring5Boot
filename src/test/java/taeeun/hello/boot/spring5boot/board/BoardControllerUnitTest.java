@@ -55,4 +55,13 @@ public class BoardControllerUnitTest {
                 .andDo(print());
     }
 
+    @Test
+    @DisplayName("BoardController find Test")
+    void findBoard() throws Exception {
+
+        mvc.perform(get("/board/find/1/title/생제르망"))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
 }
