@@ -4,7 +4,7 @@
       layout:decorate="~{layout/template}">
 
 <th:block layout:fragment="content">
-    <div id="main">
+    <div id="main" th:with="pglink='/board/list/'">
         <div class="mt-5">
             <i class="fa-solid fa-clipboard fa-2xl"> 게시판</i>
             <hr>
@@ -81,17 +81,31 @@
             <div class="offset-1 col-10">
                 <nav>
                     <ul class="pagination justify-content-center">
-                        <li class="page-item"><a th:href="|/board/list/1|" class="page-link">처음</a></li>
-                        <li class="page-item"><a th:href="|/board/list/${cpg - 1}|" class="page-link">이전</a></li>
+                        <!-- 현재페이지가 1보다 크면 '처음' 링크 표시 -->
+                        <th:block th:if="${cpg gt 1}">
+                            <li class="page-item">
+                                <a th:href="|${pglink}1|" class="page-link">처음</a></li>
+                        </th:block>
+
+                        <!--- 현재페이지 '-1' 이 0 보다 크면 '이전' 링크 활성 -->
+                        <li th:class="${(cpg - 1 gt 0) ? 'page-item' : 'page-item disabled'}">
+                            <a th:href="|${pglink}${cpg - 1}|" class="page-link">이전</a></li>
 
                         <th:block th:each="i : ${#numbers.sequence(1, 10)}">
                         <li th:class="${(i ne cpg) ? 'page-item' : 'page-item active'}">
-                            <a  th:href="|/board/list/${i}|" class="page-link"
+                            <a  th:href="|${pglink}${i}|" class="page-link"
                                 th:text="${i}">1</a></li>
                         </th:block>
 
-                        <li class="page-item"><a th:href="|/board/list/${cpg + 1}|" class="page-link">다음</a></li>
-                        <li class="page-item"><a href="#" class="page-link">끝</a></li>
+                        <!-- '현재페이지 +1' 총페이지수보다 작으면 '다음' 링크 활성 -->
+                        <li th:class="${(cpg + 1 le cntpg) ? 'page-item' : 'page-item disabled'}">
+                            <a th:href="|${pglink}${cpg+1}|" class="page-link">다음</a></li>
+
+                        <!-- 현재페이지가 총페이지수보다 작으면 '끝' 링크 표시 -->
+                        <th:block th:if="${cpg lt cntpg}">
+                        <li class="page-item">
+                            <a th:href="|${pglink}${cntpg}|" class="page-link">끝</a></li>
+                        </th:block>
                     </ul>
                 </nav>
             </div>
