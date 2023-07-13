@@ -12,7 +12,9 @@ import taeeun.hello.boot.spring5boot.model.Board;
 import taeeun.hello.boot.spring5boot.service.BoardService;
 import taeeun.hello.boot.spring5boot.service.BoardServiceImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -66,6 +68,18 @@ public class BoardServiceUnitTest {
         int result = bsrv.countBoard();
 
         assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("BoardService findBoard Test")
+    void findBoard() {
+        String ftype = "title";
+        String fkey = "생제르망";
+        int cpg = 1;
+
+        List<Board> results = bsrv.readFindBoard(cpg, ftype,fkey);
+
+        assertNotNull(results);
     }
 
 }
