@@ -66,6 +66,14 @@ public class BoardMapperUnitTest {
 
         assertEquals(result,1);
     }
+
+    @Test
+    @DisplayName("BoardMapper countPage Test")
+    void countPage() {
+        int result = boardMapper.selectCountBoard();
+
+        assertNotNull(result);
+    }
 }
 
 
