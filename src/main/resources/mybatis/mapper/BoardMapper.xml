@@ -24,4 +24,8 @@
         where bno = #{bno}
     </update>
 
+    <select id="selectCountBoard">
+        select ceil (count(bno) / 25) cntpg from board2
+    </select>
+
 </mapper>
