@@ -58,4 +58,13 @@ public class BoardDAOUnitTest {
         int result = bdao.insertBoard(b);
         assertEquals(result,1);
     }
+
+    @Test
+    @DisplayName("BoardDAO countPage Test")
+    void countPage() {
+        int result = bdao.selectCountBoard();
+
+        assertNotNull(result);
+    }
+
 }
