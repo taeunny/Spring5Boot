@@ -10,6 +10,7 @@
         values (#{userid}, #{title}, #{contents}, #{ipaddr})
     </insert>
 
+    <!-- 통째로 다 들고오는 것 -->
     <select id="selectBoard" resultType="Board">
         select bno, title, userid, regdate, thumbs, views from board2
         order by bno desc limit #{stnum}, 25
@@ -26,6 +27,24 @@
 
     <select id="selectCountBoard">
         select ceil (count(bno) / 25) cntpg from board2
+    </select>
+
+    <!-- 검색기능 -->
+    <!-- 동적질의문으로 검색 기능 구현 -->
+    <!-- 단, 컬럼명이나 테이블명에는 #{}가 아닌 ${}를 사용!! -->
+    <select id="selectFindBoard" parameterType="map" resultType="Board">
+        select bno, title, userid, regdate, thumbs, views from board2
+
+        <if test="findtype != 'titcont'">
+            where ${findtype} like concat('%', #{findkey}, '%')
+        </if>
+
+        <if test="findtype == 'titcont'">
+            where title like concat('%', #{findkey}, '%')
+                    or contents like concat('%', #{findkey}, '%')
+        </if>
+
+        order by bno desc limit #{stnum}, 25
     </select>
 
 </mapper>
