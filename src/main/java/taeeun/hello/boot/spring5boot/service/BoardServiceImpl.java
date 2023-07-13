@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import taeeun.hello.boot.spring5boot.dao.BoardDAO;
 import taeeun.hello.boot.spring5boot.model.Board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("bsrv")
 @RequiredArgsConstructor
@@ -38,5 +40,16 @@ public class BoardServiceImpl implements BoardService {
     public int countBoard() {
         return bdao.selectCountBoard();
     }
+
+    @Override
+    public List<Board> readFindBoard(Integer cpg, String ftype, String fkey) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("findtype", ftype);
+        params.put("findkey", fkey);
+        params.put("stnum", (cpg - 1) * 25);
+
+        return bdao.selectFindBoard(params);
+    }
+
 
 }
