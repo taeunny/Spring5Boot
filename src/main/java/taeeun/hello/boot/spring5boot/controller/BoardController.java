@@ -30,6 +30,7 @@ public class BoardController {
         m.addAttribute("bds", bsrv.readBoard(cpg));
         m.addAttribute("cpg", cpg);     // 현재 페이지
         m.addAttribute("cntpg",  bsrv.countBoard());     // 총 페이지수
+        m.addAttribute("stpg",  ((cpg-1) / 10) * 10 + 1);     // 시작 페이지
 
         return "/board/list";
 
