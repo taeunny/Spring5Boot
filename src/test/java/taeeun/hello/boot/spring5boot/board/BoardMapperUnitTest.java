@@ -11,7 +11,9 @@ import taeeun.hello.boot.spring5boot.model.Member;
 import taeeun.hello.boot.spring5boot.mybatis.BoardMapper;
 import taeeun.hello.boot.spring5boot.mybatis.MemberMapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -74,6 +76,20 @@ public class BoardMapperUnitTest {
 
         assertNotNull(result);
     }
+
+    @Test
+    @DisplayName("BoardMapper findBoard Test")
+    void findBoard() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("findtype","titcont");
+        params.put("findkey","생제르망");
+        params.put("stnum",0);
+
+        List<Board> results = boardMapper.selectFindBoard(params);
+
+        assertNotNull(results);
+    }
+
 }
 
 
