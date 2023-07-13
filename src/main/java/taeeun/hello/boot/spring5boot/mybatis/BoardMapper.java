@@ -8,11 +8,14 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
 
-    int insertBoard(Board b);
     List<Board> selectBoard();
+
+    int insertBoard(Board b);
 
     Board selectOneBoard(String bno);
 
     List<Board> selectBoard(int stnum);
+
+    int updateViewBoard(String bno);
 }
 
