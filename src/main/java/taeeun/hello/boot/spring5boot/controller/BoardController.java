@@ -29,6 +29,7 @@ public class BoardController {
 
         m.addAttribute("bds", bsrv.readBoard(cpg));
         m.addAttribute("cpg", cpg);     // 현재 페이지
+        m.addAttribute("cntcpg",  bsrv.countBoard());     // 총 페이지수
 
         return "/board/list";
 
