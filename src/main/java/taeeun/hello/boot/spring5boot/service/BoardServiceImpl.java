@@ -51,5 +51,13 @@ public class BoardServiceImpl implements BoardService {
         return bdao.selectFindBoard(params);
     }
 
+    @Override
+    public int countFindBoard(String ftype, String fkey) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("findtype", ftype);
+        params.put("findkey", fkey);
+
+        return bdao.countFindBoard(params);
+    }
 
 }
