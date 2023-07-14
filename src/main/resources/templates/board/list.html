@@ -6,7 +6,7 @@
 <th:block layout:fragment="content">
     <div id="main"
          th:with="pglink=${(#strings.isEmpty(fkey)) ?
-                '/board/list/' : '/board/find/'+ftype+'/'+fkey+'/'}">
+                '/board/list/' : '/board/find/' +ftype+ '/' +fkey+ '/'}">
         <div class="mt-5">
             <i class="fa-solid fa-clipboard fa-2xl"> 게시판</i>
             <hr>
