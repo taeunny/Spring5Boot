@@ -3,6 +3,7 @@ package taeeun.hello.boot.spring5boot.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import taeeun.hello.boot.spring5boot.model.Pds;
+import taeeun.hello.boot.spring5boot.model.PdsAttach;
 import taeeun.hello.boot.spring5boot.mybatis.PdsMapper;
 
 @Repository("pdao")
@@ -19,6 +20,11 @@ public class PdsDAOImpl implements PdsDAO {
             cnt = pdsMapper.lastPdsPno();
 
         return cnt;
+    }
+
+    @Override
+    public int insertPdsAttach(PdsAttach pa) {
+        return pdsMapper.insertPdsAttach(pa);
     }
 
 }
