@@ -8,5 +8,5 @@ import java.util.Map;
 public interface PdsService {
 
    int newPds(Pds p);
-    boolean newPdsAttach(MultipartFile attach, int pinfo);
+    boolean newPdsAttach(MultipartFile attach, int pno);
 }
