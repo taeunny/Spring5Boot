@@ -271,6 +271,25 @@ wrtbdbtn?.addEventListener('click', () => {
     }
 });
 
+// board find
+let findbtn = document.querySelector("#findbtn");
+let findtype = document.querySelector("#findtype");
+let findkey = document.querySelector("#findkey");
+findbtn?.addEventListener('click', () => {
+    if (findkey.value === '') alert('검색어를 입력하세요!!');
+    else {
+        location.href = `/board/find/${findtype.value}/${findkey.value}/1`;
+    }
+});
+
+
+
+
+
+
+
+
+
 
 
 
