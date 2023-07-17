@@ -15,14 +15,13 @@ public interface PdsMapper {
     int lastPdsPno();
 
     int insertPdsAttach(PdsAttach pa);
-//
-//    Pds selectOnePds(String bno);
-//
-//    List<Pds> selectPds(int stnum);
-//
+
+    List<Pds> selectPds(int stnum);
+    Pds selectOnePds(String bno);
+    int selectCountPds();
+
+
 //    int updateViewPds(String bno);
-//
-//    int selectCountPds();
 //
 //    List<Pds> selectFindPds(Map<String, Object> params);
 //

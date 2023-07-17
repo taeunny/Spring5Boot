@@ -5,6 +5,29 @@
 
 <mapper namespace="taeeun.hello.boot.spring5boot.mybatis.PdsMapper">
 
+    <!-- join result -->
+    <resultMap id="pa" type="PdsAttach">
+        <result column="fname" property="fname" />
+        <result column="ftype" property="ftype" />
+        <result column="fsize" property="fsize" />
+        <result column="fdown" property="fdown" />
+    </resultMap>
+
+    <resultMap id="ppa" type="Pds">
+        <result column="pno" property="pno" />
+        <result column="title" property="title" />
+        <result column="userid" property="userid" />
+        <result column="regdate" property="regdate" />
+        <result column="thumbs" property="thumbs" />
+        <result column="views" property="views" />
+        <result column="contents" property="contents" />
+        <result column="ipaddr" property="ipaddr" />
+
+        <collection property="pa" resultMap="pa" />
+    </resultMap>
+
+
+
     <insert id="insertPds" parameterType="Pds">
         insert into pds (userid, title, contents, ipaddr)
         values (#{userid}, #{title}, #{contents}, #{ipaddr})
@@ -16,11 +39,23 @@
         select last_insert_id() from pds limit 1,1
     </select>
 
-
     <insert id="insertPdsAttach" parameterType="PdsAttach">
         insert into pdsattach (pno, fname, ftype, fsize)
         values (#{pno}, #{fname}, #{ftype}, #{fsize})
     </insert>
+
+    <select id="selectPds" resultType="Pds">
+        select pno, title, userid, regdate, thumbs, views from pds
+        order by pno desc limit #{stnum}, 25
+    </select>
+
+    <select id="selectOnePds" resultMap="ppa">
+        select * from ppa where pno = #{pno}
+    </select>
+
+    <select id="selectCountPds">
+        select ceil (count(pno) / 25) cntpg from pds
+    </select>
 
 
 <!--    &lt;!&ndash; 통째로 다 들고오는 것 &ndash;&gt;
@@ -29,18 +64,10 @@
         order by bno desc limit #{stnum}, 25
     </select>
 
-    <select id="selectOnePds" resultType="Pds">
-        select * from Pds2 where bno = #{bno}
-    </select>
-
     <update id="updateViewPds">
         update Pds2 set views = views +1
         where bno = #{bno}
     </update>
-
-    <select id="selectCountPds">
-        select ceil (count(bno) / 25) cntpg from Pds2
-    </select>
 
     &lt;!&ndash; 검색기능 &ndash;&gt;
     &lt;!&ndash; 동적질의문으로 검색 기능 구현 1 &ndash;&gt;
