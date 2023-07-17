@@ -8,6 +8,7 @@ import taeeun.hello.boot.spring5boot.model.Pds;
 import taeeun.hello.boot.spring5boot.model.PdsAttach;
 import taeeun.hello.boot.spring5boot.utils.PdsUtils;
 
+import java.util.List;
 import java.util.Map;
 
 @Service("psrv")
@@ -35,5 +36,24 @@ public class PdsServiceImpl implements PdsService {
 
         // 삼항연산자 사용 (변수 따로 선언할 필요없음)
         return (pacnt > 0)? true : false;
+    }
+
+    @Override
+    public List<Pds> readPds(Integer cpg) {
+        int stnum = (cpg -1) *25;
+
+        return pdao.selectPds(stnum);
+    }
+
+    @Override
+    public int countPds() {
+
+        return pdao.selectCountPds();
+    }
+
+    @Override
+    public Pds readOnePds(String pno) {
+
+        return pdao.selectOnePds(pno);
     }
 }
