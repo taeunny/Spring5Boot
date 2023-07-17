@@ -36,8 +36,18 @@
                     <td class="text-end" th:text="|${p.regdate} / ${p.thumbs} / ${p.views}|">작성일/추천/조회</td></tr>
 
                 <tr><td class="vcont" colspan="2" th:text="${p.contents}">본문글</td></tr>
+
+                <tr>
+                    <td class="vinfo" colspan="2">
+                        <a th:href="|/pds/down/${p.pno}|"
+                           th:text="${p.pa.fname}">파일명</a>
+                        <span th:text="|${p.pa.fsize} KB/${p.pa.fdown}회 다운로드|">파일정보</span>
+                    </td>
+                </tr>
+
             </table>
         </div> <!-- 본문글 -->
+
 
 
         <div class="row mb-3 mt-5">
@@ -53,7 +63,6 @@
                     <i class="fa fa-list"></i> 목록으로</button>
             </div>
         </div> <!-- 버튼들 -->
-
 
 
     </div>
