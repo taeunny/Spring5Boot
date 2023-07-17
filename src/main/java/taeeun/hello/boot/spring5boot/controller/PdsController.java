@@ -1,6 +1,8 @@
 package taeeun.hello.boot.spring5boot.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import taeeun.hello.boot.spring5boot.model.Pds;
 import taeeun.hello.boot.spring5boot.service.PdsService;
 import org.apache.logging.log4j.LogManager;
@@ -22,11 +24,19 @@ public class PdsController {
 
     final PdsService psrv;
 
-    @GetMapping("/list")
-    public String list() {
+    @GetMapping("/list/{cpg}")
+    public String list(Model m , @PathVariable Integer cpg) {
         logger.info("pds/list 호출!!");
 
-        return "list-";
+        m.addAttribute("pds", psrv.readPds(cpg));
+        m.addAttribute("cpg", cpg);     // 현재 페이지
+        m.addAttribute("cntpg",  psrv.countPds());     // 총 페이지수
+        m.addAttribute("stpg",  ((cpg-1) / 10) * 10 + 1);     // 시작 페이지
+
+        if (cpg > (int)m.getAttribute("cntpg"))
+            return "redirect:/pds/list/1";
+
+        return "/pds/list";
     }
 
     @GetMapping("/write")
@@ -52,6 +62,14 @@ public class PdsController {
         return returnPage;
     }
 
+    @GetMapping("/view/{pno}")
+    public String view(Model m , @PathVariable String pno) {
+        logger.info("pds/view 호출!!");
+
+        m.addAttribute("p", psrv.readOnePds(pno));
+
+        return "/pds/view";
+    }
 }
 
 
