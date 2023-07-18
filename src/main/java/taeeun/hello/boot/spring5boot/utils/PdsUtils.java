@@ -4,12 +4,18 @@ package taeeun.hello.boot.spring5boot.utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriUtils;
 import taeeun.hello.boot.spring5boot.model.PdsAttach;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -60,11 +66,45 @@ public class PdsUtils {
         String uuid = LocalDate.now() + "" + LocalTime.now();
 
         // - : . 표시를 찾아서 제거한다는 의미!
-        uuid.replace("-","")
+        uuid = uuid.replace("-","")
                 .replace(":","")
                 .replace(".", "");
 
         return uuid;
+    }
+
+    public HttpHeaders getHeader(String fname) {
+        HttpHeaders header = new HttpHeaders();
+
+        // 다운로드할 파일의 이름을 인코딩함 - 한글처리
+        fname = UriUtils.encode(fname, StandardCharsets.UTF_8);
+
+        try {
+            // 다운로드할 파일의 유형을 헤더에 저장
+            header.add("Content-Type",
+                    Files.probeContentType(Paths.get(saveDir + fname)));
+            // 다운로드시 표시할 파일이름 지정
+            header.add("Content-Disposition",
+                    "attachment; filename=" + fname);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return header;
+    }
+
+    public UrlResource getResource(String fname) {
+        UrlResource resource = null;
+
+        fname = UriUtils.encode(fname, StandardCharsets.UTF_8);
+
+        try {
+            resource = new UrlResource("file:" + saveDir + fname);
+        } catch (Exception ex) {
+           ex.printStackTrace();
+        }
+
+        return resource;
     }
 
 }
