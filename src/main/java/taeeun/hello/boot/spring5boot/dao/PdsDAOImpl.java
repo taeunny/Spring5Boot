@@ -47,4 +47,10 @@ public class PdsDAOImpl implements PdsDAO {
         return pdsMapper.selectOnePds(pno);
     }
 
+    @Override
+    public PdsAttach selectOnePdsAttach(String pno) {
+
+        return pdsMapper.selectOnePdsAttach(pno);
+    }
+
 }
