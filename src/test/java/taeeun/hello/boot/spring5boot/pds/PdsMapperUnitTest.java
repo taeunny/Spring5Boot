@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.transaction.annotation.Transactional;
 import taeeun.hello.boot.spring5boot.model.Pds;
+import taeeun.hello.boot.spring5boot.model.PdsAttach;
 import taeeun.hello.boot.spring5boot.mybatis.PdsMapper;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -31,6 +32,15 @@ public class PdsMapperUnitTest {
         pdsMapper.insertPds(p);
         int result = pdsMapper.lastPdsPno();
 
+        assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("PdsMapper selectOnePA Test")
+    void selectOnePA() {
+        String pno = "7";
+
+        PdsAttach result = pdsMapper.selectOnePdsAttach(pno);
         assertNotNull(result);
     }
 
