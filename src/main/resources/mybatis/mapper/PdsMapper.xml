@@ -61,6 +61,16 @@
         select * from pdsattach where pno = #{pno}
     </select>
 
+    <insert id="insertPdsComment" parameterType="PdsComment">
+        insert into pdscomments (userid, comments, ref, pno)
+        values (#{pno}, #{userid}, #{comments}, #{ref}, #{pno)})
+    </insert>
+
+    <select id="selectPdsComment" resultType="PdsComment">
+        select * from pdscomments where pno = #{pno}
+        order by ref
+    </select>
+
 
 
 <!--    &lt;!&ndash; 통째로 다 들고오는 것 &ndash;&gt;
