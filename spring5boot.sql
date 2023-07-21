@@ -152,3 +152,34 @@ select * from pdscomments where pno = 10
 order by  ref;
 
 
+-- gallery
+create table gallery (
+     gno          int              auto_increment,
+     title       varchar(100)      not null,
+     userid      varchar(18)       not null,
+     regdate     datetime          default current_timestamp,
+     thumbs      int               default 0,
+     views       int               default 0,
+     contents    text              not null,
+     ipaddr      varchar(15)       not null,
+     primary key (gno)
+);
+
+
+-- gallery Attach
+create table galattach  (
+    gano        int             auto_increment,
+    gno         int             not null,       -- 게시글 번호
+    fname       varchar(1024)   not null,       -- uuid 포함 (다른 사람이 똑같은 파일 올리면 충돌, uuid:식별코드)
+    fsize       varchar(256)    not null ,      -- 파일 용량
+    primary key (gano)
+);
+
+alter table gallery
+    add constraint fkguid
+        foreign key (userid) references member2 (userid);
+
+alter table galattach
+    add constraint fkgno
+        foreign key (gno) references gallery (gno);
+
